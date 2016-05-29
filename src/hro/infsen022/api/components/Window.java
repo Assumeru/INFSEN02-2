@@ -1,4 +1,4 @@
-package hro.infsen022.components;
+package hro.infsen022.api.components;
 
 public interface Window extends ComponentList {
 	void setTitle(String title);

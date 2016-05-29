@@ -1,4 +1,4 @@
-package hro.infsen022.graphics;
+package hro.infsen022.api.graphics;
 
 public class Color {
 	public static final Color BLACK = new Color(0xFF000000);

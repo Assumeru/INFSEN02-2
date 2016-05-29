@@ -1,4 +1,4 @@
-package hro.infsen022.graphics;
+package hro.infsen022.api.graphics;
 
 public class Paint {
 	private final Color lineColor;

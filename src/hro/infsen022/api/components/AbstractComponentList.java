@@ -1,20 +1,25 @@
-package hro.infsen022.components;
+package hro.infsen022.api.components;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
-import hro.infsen022.graphics.DrawContext;
-import hro.infsen022.layout.Layout;
+import hro.infsen022.api.components.event.ListMouseEventListener;
+import hro.infsen022.api.components.event.MouseListener;
+import hro.infsen022.api.graphics.DrawContext;
+import hro.infsen022.api.layout.Layout;
 
-public abstract class AbstractComponentList implements ComponentList {
+public abstract class AbstractComponentList implements ComponentList, DrawForBounds {
+	private final Optional<MouseListener> mouseListener;
 	private final Set<Component> components;
 	private final Layout layout;
 
 	public AbstractComponentList(Layout layout) {
 		components = new LinkedHashSet<>();
 		this.layout = layout;
+		mouseListener = Optional.of(new ListMouseEventListener(this));
 	}
 
 	@Override
@@ -82,12 +87,19 @@ public abstract class AbstractComponentList implements ComponentList {
 		components.clear();
 	}
 
-	protected Layout getLayout() {
+	@Override
+	public Layout getLayout() {
 		return layout;
 	}
 
 	@Override
 	public void draw(DrawContext context) {
+		setBounds(context);
 		layout.draw(context, getBounds(), components);
+	}
+
+	@Override
+	public Optional<MouseListener> getMouseListener() {
+		return mouseListener;
 	}
 }

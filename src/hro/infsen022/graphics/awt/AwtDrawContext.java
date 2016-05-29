@@ -3,15 +3,16 @@ package hro.infsen022.graphics.awt;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import hro.infsen022.graphics.Color;
-import hro.infsen022.graphics.DrawContext;
-import hro.infsen022.graphics.Matrix;
-import hro.infsen022.graphics.Paint;
-import hro.infsen022.shape.Point;
-import hro.infsen022.shape.Rectangle;
+import hro.infsen022.api.graphics.Color;
+import hro.infsen022.api.graphics.DrawContext;
+import hro.infsen022.api.graphics.Matrix;
+import hro.infsen022.api.graphics.Paint;
+import hro.infsen022.api.shape.Point;
+import hro.infsen022.api.shape.Rectangle;
 
 public class AwtDrawContext implements DrawContext {
 	private final Graphics2D graphics;
@@ -76,4 +77,15 @@ public class AwtDrawContext implements DrawContext {
 		graphics.setTransform(matrices.pop());
 	}
 
+	@Override
+	public void drawText(Paint paint, Point point, CharSequence text) {
+		setFill(paint);
+		graphics.drawString(text.toString(), point.getX(), point.getY());
+	}
+
+	@Override
+	public Rectangle getBounds(Paint paint, CharSequence text) {
+		Rectangle2D bounds = graphics.getFontMetrics().getStringBounds(text.toString(), graphics);
+		return new Rectangle(Point.ORIGIN, (int) bounds.getWidth(), (int) bounds.getHeight());
+	}
 }

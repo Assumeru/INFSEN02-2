@@ -1,4 +1,4 @@
-package hro.infsen022.graphics;
+package hro.infsen022.api.graphics;
 
 public class Matrix {
 	private final int x;
