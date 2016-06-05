@@ -3,7 +3,6 @@ package hro.infsen022.components.factory;
 import java.util.Objects;
 
 import hro.infsen022.api.components.Button;
-import hro.infsen022.api.components.Component;
 import hro.infsen022.api.components.Label;
 import hro.infsen022.api.components.Window;
 import hro.infsen022.api.components.event.ClickListener;
@@ -53,7 +52,7 @@ public class Factory {
 		return labelFactory.createLabel(text);
 	}
 
-	public static Component createLabel(String text, Color color) {
+	public static Label createLabel(String text, Color color) {
 		return labelFactory.createLabel(text, color);
 	}
 }

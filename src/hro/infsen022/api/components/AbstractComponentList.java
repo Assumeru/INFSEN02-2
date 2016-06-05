@@ -11,7 +11,7 @@ import hro.infsen022.api.components.event.MouseListener;
 import hro.infsen022.api.graphics.DrawContext;
 import hro.infsen022.api.layout.Layout;
 
-public abstract class AbstractComponentList implements ComponentList, DrawForBounds {
+public abstract class AbstractComponentList implements ComponentList {
 	private final Optional<MouseListener> mouseListener;
 	private final Set<Component> components;
 	private final Layout layout;

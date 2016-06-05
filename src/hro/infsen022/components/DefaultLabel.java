@@ -1,6 +1,5 @@
 package hro.infsen022.components;
 
-import hro.infsen022.api.components.DrawForBounds;
 import hro.infsen022.api.components.Label;
 import hro.infsen022.api.graphics.Color;
 import hro.infsen022.api.graphics.DrawContext;
@@ -8,7 +7,7 @@ import hro.infsen022.api.graphics.Paint;
 import hro.infsen022.api.shape.Point;
 import hro.infsen022.api.shape.Rectangle;
 
-public class DefaultLabel implements Label, DrawForBounds {
+public class DefaultLabel implements Label {
 	private final String text;
 	private Paint paint;
 	private Rectangle bounds;

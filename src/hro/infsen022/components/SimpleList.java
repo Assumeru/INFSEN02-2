@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import hro.infsen022.api.components.AbstractComponentList;
 import hro.infsen022.api.components.Component;
-import hro.infsen022.api.components.DrawForBounds;
 import hro.infsen022.api.graphics.DrawContext;
 import hro.infsen022.api.shape.Point;
 import hro.infsen022.api.shape.Rectangle;
@@ -35,9 +34,7 @@ public class SimpleList extends AbstractComponentList {
 			int w = 0;
 			int h = 0;
 			for(Component c : this) {
-				if(c instanceof DrawForBounds) {
-					((DrawForBounds) c).setBounds(context);
-				}
+				c.setBounds(context);
 				Rectangle b = c.getBounds();
 				w = Math.max(w, b.getWidth());
 				h += b.getHeight();

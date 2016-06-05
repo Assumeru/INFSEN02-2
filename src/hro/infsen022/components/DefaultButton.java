@@ -3,7 +3,6 @@ package hro.infsen022.components;
 import java.util.Optional;
 
 import hro.infsen022.api.components.Button;
-import hro.infsen022.api.components.DrawForBounds;
 import hro.infsen022.api.components.Label;
 import hro.infsen022.api.components.event.ClickListener;
 import hro.infsen022.api.components.event.MouseEvent;
@@ -15,13 +14,13 @@ import hro.infsen022.api.shape.Point;
 import hro.infsen022.api.shape.Rectangle;
 import hro.infsen022.components.factory.Factory;
 
-public class DefaultButton implements Button, DrawForBounds {
+public class DefaultButton implements Button {
 	private static final Paint COLOR1 = new Paint(Color.TRANSPARENT, new Color(0xFFC6C6C6), 0);
 	private static final Paint COLOR2 = new Paint(Color.TRANSPARENT, new Color(0xFFE5E5E5), 0);
-	private static int MARGIN_BOTTOM = 3;
-	private static int MARGIN_TOP = 0;
-	private static int MARGIN_LEFT = 3;
-	private static int MARGIN_RIGHT = 3;
+	private static final int MARGIN_BOTTOM = 3;
+	private static final int MARGIN_TOP = 0;
+	private static final int MARGIN_LEFT = 3;
+	private static final int MARGIN_RIGHT = 3;
 	private Optional<ClickListener> listener = Optional.empty();
 	private Rectangle bounds;
 	private Label label;
@@ -89,9 +88,7 @@ public class DefaultButton implements Button, DrawForBounds {
 	@Override
 	public void setBounds(DrawContext context) {
 		if(bounds == null) {
-			if(label instanceof DrawForBounds) {
-				((DrawForBounds) label).setBounds(context);
-			}
+			label.setBounds(context);
 			Rectangle b = label.getBounds();
 			bounds = new Rectangle(Point.ORIGIN, b.getWidth() + MARGIN_LEFT + MARGIN_RIGHT, b.getHeight() + MARGIN_BOTTOM + MARGIN_TOP);
 		}
