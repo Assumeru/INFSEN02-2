@@ -1,7 +1,5 @@
 package hro.infsen022.components;
 
-import java.util.Optional;
-
 import hro.infsen022.api.components.Button;
 import hro.infsen022.api.components.Label;
 import hro.infsen022.api.components.event.ClickListener;
@@ -10,6 +8,7 @@ import hro.infsen022.api.graphics.Color;
 import hro.infsen022.api.graphics.DrawContext;
 import hro.infsen022.api.graphics.Matrix;
 import hro.infsen022.api.graphics.Paint;
+import hro.infsen022.api.optional.Option;
 import hro.infsen022.api.shape.Point;
 import hro.infsen022.api.shape.Rectangle;
 import hro.infsen022.components.factory.Factory;
@@ -21,7 +20,7 @@ public class DefaultButton implements Button {
 	private static final int MARGIN_TOP = 0;
 	private static final int MARGIN_LEFT = 3;
 	private static final int MARGIN_RIGHT = 3;
-	private Optional<ClickListener> listener = Optional.empty();
+	private Option<ClickListener> listener = Option.none();
 	private Rectangle bounds;
 	private Label label;
 	private Paint color1 = COLOR1;
@@ -62,12 +61,16 @@ public class DefaultButton implements Button {
 
 	@Override
 	public void onClick(MouseEvent e) {
-		listener.ifPresent(l -> l.onClick(this, e));
+		listener.onSome(l -> l.onClick(this, e));
 	}
 
 	@Override
 	public void setClickListener(ClickListener listener) {
-		this.listener = Optional.ofNullable(listener);
+		if(listener == null) {
+			this.listener = Option.none();
+		} else {
+			this.listener = Option.of(listener);
+		}
 	}
 
 	@Override

@@ -1,15 +1,14 @@
 package hro.infsen022.api.components;
 
-import java.util.Optional;
-
 import hro.infsen022.api.components.event.ClickListener;
 import hro.infsen022.api.components.event.MouseEvent;
 import hro.infsen022.api.components.event.MouseListener;
+import hro.infsen022.api.optional.Option;
 
 public interface Button extends Label, MouseListener {
 	@Override
-	default Optional<MouseListener> getMouseListener() {
-		return Optional.of(this);
+	default Option<MouseListener> getMouseListener() {
+		return Option.of(this);
 	}
 
 	void setClickListener(ClickListener listener);

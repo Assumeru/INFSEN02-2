@@ -50,25 +50,25 @@ class Canvas extends JPanel implements java.awt.event.MouseListener, java.awt.ev
 
 	@Override
 	public void mouseClicked(java.awt.event.MouseEvent e) {
-		window.getMouseListener().ifPresent(l -> l.onClick(getMouseEvent(e)));
+		window.getMouseListener().onSome(l -> l.onClick(getMouseEvent(e)));
 		repaint();
 	}
 
 	@Override
 	public void mouseEntered(java.awt.event.MouseEvent e) {
-		window.getMouseListener().ifPresent(l -> l.onEnter(getMouseEvent(e)));
+		window.getMouseListener().onSome(l -> l.onEnter(getMouseEvent(e)));
 		repaint();
 	}
 
 	@Override
 	public void mouseExited(java.awt.event.MouseEvent e) {
-		window.getMouseListener().ifPresent(l -> l.onExit(getMouseEvent(e)));
+		window.getMouseListener().onSome(l -> l.onExit(getMouseEvent(e)));
 		repaint();
 	}
 
 	@Override
 	public void mouseMoved(java.awt.event.MouseEvent e) {
-		window.getMouseListener().ifPresent(l -> l.onMove(getMouseEvent(e)));
+		window.getMouseListener().onSome(l -> l.onMove(getMouseEvent(e)));
 		repaint();
 	}
 

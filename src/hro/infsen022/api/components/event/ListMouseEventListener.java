@@ -21,28 +21,28 @@ public class ListMouseEventListener implements MouseListener {
 	@Override
 	public void onClick(MouseEvent e) {
 		Map<Component, Rectangle> bounds = list.getLayout().getBounds(list);
-		for(Component c : list) {
+		list.forEach(c -> {
 			if(bounds.containsKey(c) && bounds.get(c).contains(e.getPosition())) {
-				c.getMouseListener().ifPresent(l -> l.onClick(e));
+				c.getMouseListener().onSome(l -> l.onClick(e));
 			}
-		}
+		});
 	}
 
 	@Override
 	public void onMove(MouseEvent e) {
 		Map<Component, Rectangle> bounds = list.getLayout().getBounds(list);
-		for(Component c : list) {
+		list.forEach(c -> {
 			if(bounds.containsKey(c) && bounds.get(c).contains(e.getPosition())) {
-				c.getMouseListener().ifPresent(l -> l.onMove(moveInside(e, bounds.get(c))));
+				c.getMouseListener().onSome(l -> l.onMove(moveInside(e, bounds.get(c))));
 				if(inside.add(c)) {
-					c.getMouseListener().ifPresent(l -> l.onEnter(e));
+					c.getMouseListener().onSome(l -> l.onEnter(e));
 				}
 			} else {
 				if(inside.remove(c)) {
-					c.getMouseListener().ifPresent(l -> l.onExit(e));
+					c.getMouseListener().onSome(l -> l.onExit(e));
 				}
 			}
-		}
+		});
 	}
 
 	private MouseEvent moveInside(MouseEvent e, Rectangle rectangle) {
@@ -57,7 +57,7 @@ public class ListMouseEventListener implements MouseListener {
 
 	@Override
 	public void onExit(MouseEvent e) {
-		inside.forEach(c -> c.getMouseListener().ifPresent(l -> l.onExit(e)));
+		inside.forEach(c -> c.getMouseListener().onSome(l -> l.onExit(e)));
 		inside.clear();
 	}
 }

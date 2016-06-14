@@ -1,14 +1,13 @@
 package hro.infsen022.components.swing;
 
-import java.util.Optional;
-
 import javax.swing.JFrame;
 
 import hro.infsen022.api.components.AbstractComponentList;
 import hro.infsen022.api.components.Window;
-import hro.infsen022.api.components.event.MouseListener;
 import hro.infsen022.api.components.event.ListMouseEventListener;
+import hro.infsen022.api.components.event.MouseListener;
 import hro.infsen022.api.graphics.DrawContext;
+import hro.infsen022.api.optional.Option;
 import hro.infsen022.api.shape.Rectangle;
 import hro.infsen022.layout.AbsoluteLayout;
 
@@ -50,8 +49,8 @@ public class SwingWindow extends AbstractComponentList implements Window {
 	}
 
 	@Override
-	public Optional<MouseListener> getMouseListener() {
-		return Optional.of(mouseListener);
+	public Option<MouseListener> getMouseListener() {
+		return Option.of(mouseListener);
 	}
 
 	@Override
